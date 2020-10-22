@@ -43,23 +43,24 @@
 <!-- afficher la phrase suivante : bonjour a tous, je m'appelle ...${nom} -->
         <p> Bonjour à tous, je m'appelle <?= $nom ?></p>
 <!-- faire a tableau afficher les valeur de l'array $team -->
-
 <table>
-        <tr>
-            <th>Prenom</th>
-            <th>Métier</th>
-        </tr>
-    <tbody>
-        <?php
-            foreach ($metier as $prenom=>$prof)
-            {
-                echo"<tr>
-                    <td> $prenom</td>
-                    <td> $prof</td>    
-                    </tr>";
-            }
-        ?>
-    </tbody>
+            <thead>
+                <tr>
+                    <th>Prenom</th>
+                    <th>Métier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($metier as $prenom=>$prof)
+                        {
+                            echo"<tr>;
+                                    <td> $prenom</td>;
+                                    <td> $prof</td>   ;  
+                                </tr>";
+                        }
+                ?>
+            </tbody>
 </table>
 <h1>la team</h1>
 <p>composition</p>
@@ -74,14 +75,7 @@ DON'T HARDCODE
 <!-- faire de meme mais avec un liste a puce 
 DON'T HARDCODE
  -->
-<ul>
-    <?php
-        foreach ($metier as $prenom=>$prof)
-        {
-            echo "<li> $prenom a pour métier $prof</li>";
-        }
-    ?>   
-</ul>
+
 
 
 <!-- faire un condition de comparaison sur $ma_verite

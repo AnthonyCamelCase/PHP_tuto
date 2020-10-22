@@ -48,8 +48,15 @@
             {
                 echo $prenoms[$numero] . '<br />'; // affichera $prenoms[0], $prenoms[1] etc.
             }
+            //boucle foreach dans un array
+            foreach ($prenoms as $n )
+            {
+                echo $n . "<br>";
+            }
         ?>
+        
         <?php
+        //boucle foreach dans un array
             $coordonnees = array (
             'prenom' => 'François',
             'nom' => 'Dupont',
@@ -63,8 +70,62 @@
         ?>
 
         <?php 
+        //imprimer le tableau d'un coup en brut
         print_r($coordonnees)
         ?>
+        <br><br>
+
+        
+        <?php
+        //Liste de 10 avec boucle for
+        $i=0;
+        while($i<=10)
+        {
+            echo $i;
+            $i++;
+        };
+        ?>
+
+        <?php
+        function ShowID($tab, $i)
+        {
+            echo $tab[$i],"<br><br>";
+        }
+
+        ShowID($prenoms,1);
+
+        function Convert($value)
+        {
+            $value *=100;
+            return $value;
+        }
+
+        $newvalue = Convert(52);
+        echo $newvalue,"cm <br><br>";
+        
+        $valeur = 5;
+        function Change()
+        {
+            global $valeur;
+            $valeur = 10;
+        }
+        echo $valeur,"avant la fonction <br> ";
+        Change();
+
+        echo $valeur, "après la fonction  <br>";
+
+        function Town($ville)
+        {
+            global $coordonnees;
+            $coordonnees["ville"] = $ville;
+        }
+
+        Town("cocolint");
+        echo $coordonnees["ville"];
+
+        ?>
+
+        
     </p>
 
     <ul>
