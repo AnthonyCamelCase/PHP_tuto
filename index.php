@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,9 +27,11 @@
         </p>
     </div>
     <?php
-            $nom = "Anthony"; //affecter a la variable nom votre prenom
+            #$nom = "Anthony";
+            $_SESSION['nom'] = $nom = "Anthony";
+ //affecter a la variable nom votre prenom
             $team = ["benoit","mathilde","stephanie"];
-            $metier = [
+            $_SESSION['metier']=$metier = [
                 "benoit" => "dev",
                 "mathilde" => "UI/UX",
                 "stephanie" => "product owner"
@@ -36,6 +39,7 @@
             $ma_verite = true;
             $calcul = 5 + 25;                            
     ?>
+
 </head>
 <body>
    <nav></nav>   <!--ici liens vers la page remember -->
@@ -111,14 +115,29 @@ si le resultat est inferieur a 15
 sinon 
 <h1>too high<H1>
 -->
+<div>
 
+    <?php
+    if ($calcul <= 15)
+    {
+        echo "<h1>not so good <h1>";
+    }
+    elseif ($calcul <= 45)
+    {
+        echo "<h1>not so good <h1>";
+    }
+    else 
+    {
+        echo "<h1>not so good <h1>";
+    }
+    ?>
+
+</div>
 
 
     
     <!-- Le pied de page -->
     
     <?php include("pied.php"); ?>
-    
-
     </body>
 </html>
