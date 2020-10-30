@@ -1,12 +1,12 @@
 <?php session_start()?>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <meta charset="utf-8" />
         <title>Mon super site</title>
-    </head>
+</head>
  
-    <body>
+<body>
  
     <!-- L'en-tête -->
     
@@ -17,7 +17,9 @@
     <?php include("menu.php"); ?>
     
     <!-- Le corps -->
-    
+
+
+    </div>
     <div id="corps">
         <h1>Mon super site</h1>
         
@@ -40,14 +42,15 @@
             $calcul = 5 + 25;                            
     ?>
 
-</head>
-<body>
-   <nav></nav>   <!--ici liens vers la page remember -->
-        <a href="remember.php">Remember page</a>
-<!-- afficher la phrase suivante : bonjour a tous, je m'appelle ...${nom} -->
-        <p> Bonjour à tous, je m'appelle <?= $nom ?></p>
-<!-- faire a tableau afficher les valeur de l'array $team -->
 
+<body>
+<nav>
+ <!--ici liens vers la page remember -->
+        <a href="remember.php">Remember page</a>
+</nav>  
+<!-- afficher la phrase suivante : bonjour a tous, je m'appelle ...${nom} -->
+    <p> Bonjour à tous, je m'appelle <?= $nom ?></p>
+<!-- faire a tableau afficher les valeur de l'array $team -->
 <table>
         <tr>
             <th>Prenom</th>
@@ -65,8 +68,10 @@
         ?>
     </tbody>
 </table>
-<h1>la team</h1>
-<p>composition</p>
+
+
+    <h1>la team</h1>
+    <p>composition</p>
 <!-- faire un template d'afficher suivante : 
 benoit notre dev
 mathilde notre UI/UX
@@ -74,18 +79,18 @@ stephanie notre product owner
 DON'T HARDCODE
 -->
 
-<ul>la team again</ul>
+    <ul>la team again</ul>
 <!-- faire de meme mais avec un liste a puce 
 DON'T HARDCODE
  -->
-<ul>
+    <ul>
     <?php
         foreach ($metier as $prenom=>$prof)
         {
             echo "<li> $prenom a pour métier $prof</li>";
         }
     ?>   
-</ul>
+    </ul>
 
 
 <!-- faire un condition de comparaison sur $ma_verite
@@ -93,7 +98,7 @@ si true
 faire afficher <h1>vraix</h1>
 sinon afficher <h1>faux</h1> -->
 
-<div>
+    <div>
         <?php
             if ($ma_verite == True)
             {
@@ -104,8 +109,7 @@ sinon afficher <h1>faux</h1> -->
                 echo "<h1>faux</h1>  <br><br>";
             }
         ?>
-
-</div>
+    </div>
 
 <!-- faire un condition de comparaison sur $calcul
 si le resultat entre 15 et 45 
@@ -115,7 +119,7 @@ si le resultat est inferieur a 15
 sinon 
 <h1>too high<H1>
 -->
-<div>
+    <div>
 
     <?php
     if ($calcul <= 15)
@@ -132,12 +136,27 @@ sinon
     }
     ?>
 
-</div>
+    </div>
 
+    <div>
+    <?php
+    if (isset($_SESSION["erreur"]))
+    {
+        echo "<h2>",$_SESSION['erreur'],"</h2>";
+    }
+    ?>
+    <form action="traitement.php" method="post">
+    <label for="pren">Votre prénom :</label><input type="text" name="prenom" id="pren">
+    <label for="name">Votre nom :</label><input type="text" name="nom" id="name">
+    <input type="submit" value="gogogo">
 
     
+
+    </form>
+    
+    </div>
     <!-- Le pied de page -->
     
     <?php include("pied.php"); ?>
-    </body>
+</body>
 </html>
