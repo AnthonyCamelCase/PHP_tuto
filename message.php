@@ -1,4 +1,4 @@
-<?php session_start()?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +28,47 @@
     </div>
 
     <div>
-        <?= $_SESSION['prenom']," ", $_SESSION['nom'];
-        ?>
+    <?php
+
+    //on récupère une BDD : avec test try catch
+    $dsn = 'mysql:host=localhost;dbname=user;'; 
+    $user = 'root'; 
+    $password = ''; 
+    try 
+    { 
+    $bdd = new PDO($dsn, $user, $password); 
+    } 
+    catch (PDOException $e) 
+    { 
+     echo 'Connection failed: ' . $e->getMessage(); 
+    }
+
+    // on fait une requete sur cette BDD
+    $reponse = $bdd->query('SELECT * FROM utilisateur');
+
+    //afficher le résultat de la requete
+    while ($donnees= $reponse->fetch())
+    {
+        echo " prenom : ", $donnees['prenom'],", nom : ", $donnees['nom'],", age : ", $donnees['age'];
+        
+        $test = $donnees['id'];
+
+        echo "<a href='deleteInstance.php?id=.$test'>Delete</a><br><br>";
+        
+        
+    }
+    
+    // on ferme le traitement de la requete
+    
+    ?>
     </div>
-
+    
+<button>DELETE</button>
     <!-- Le pied de page -->
-
+<button> <a href="deleteInstance.php?id=$donnees['id']">Delete</a> </button>
     <?php include("pied.php"); ?>
+
+
 
 </body>
 </html>
