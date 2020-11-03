@@ -1,7 +1,6 @@
 <?php
 $id = $_GET['id'];
 $id = intval($id);
-var_dump($id);
 if (is_integer($id))
 {
     //on récupère une BDD : avec test try catch

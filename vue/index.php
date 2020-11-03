@@ -17,25 +17,10 @@
     <?php include("../template/menu.php"); ?>
     
     <!-- Le corps -->
-
-
-    </div>
-    <h2>Formulaire user :</h2>
-    <div>
-    <?php
-    if (isset($_SESSION["erreur"]))
-    {
-        echo "<h2>",$_SESSION['erreur'],"</h2>";
-    }
-    ?>
-    <form action="../traitement/formulaire.php" method="post">
-    <label for="pren">Votre prénom : </label><input type="text" name="prenom" id="pren"><br><br>
-    <label for="name">Votre nom : </label><input type="text" name="nom" id="name"><br><br>
-    <label for="age">Votre age : </label><input type="number" name="age" id="age"><br><br>
-    <input type="submit" value="gogogo">   
-    </form>
+<div>
+<p>Bienvenue sur le site de ouf ou y a que des trucs de ouf. Commencez par vous inscrire puis connecteez vous pour accéder au contenu.</p>
+</div>
     
-    </div>
     <!-- Le pied de page -->
     
     <?php include("../template/pied.php"); ?>

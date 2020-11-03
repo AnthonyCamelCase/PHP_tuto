@@ -48,16 +48,17 @@
 
     //afficher le résultat de la requete
     while ($donnees= $reponse->fetch())
-    {
-        echo " prenom : ", $donnees['prenom'],", nom : ", $donnees['nom'],", age : ", $donnees['age'];
-        
-        $test = $donnees['id'];
+    { ?>
+        <!--on affiche les infos de chaque user -->
+        pseudo : <?php $donnees['pseudo']?>, prénom :<?php $donnees['prenom']?>, age :<?php $donnees['age']?>, mdp :<?php $donnees['mdp']?>;
 
-        echo "<a href='../traitement/deleteInstance.php?id=$test'>Delete</a><br><br>";     
+        <!--on ferme le traitement de la requete -->
+        <button><a href='../traitement/deleteInstance.php?id=<?php $donnees['id']?>'>Delete</a></button>
+        <br><br>   
+    <?php      
     }
-    
     // on ferme le traitement de la requete
-    
+    $reponse->closeCursor();
     ?>
     </div>
     

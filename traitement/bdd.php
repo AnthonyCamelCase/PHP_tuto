@@ -19,26 +19,21 @@
     { 
      echo 'Connection failed: ' . $e->getMessage(); 
     }
-    
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    $mdp = password_hash(htmlspecialchars($_POST["mdp"]));
     //requete préparée :
-    $req = $bdd->prepare('INSERT INTO utilisateur(prenom,nom,age) VALUES(:prenom,:nom,:age)');
+    $req = $bdd->prepare('INSERT INTO utilisateur(pseudo, mdp) VALUES(:pseudo,:mdp)');
     
     $req->execute(array(
-	'prenom' => $perso->getPrenom(),
-	'nom' => $perso->getNom(),
-	'age' => $perso->getAge(),
+	'pseudo' => $perso->$pseudo,
+	'mdp' => $perso->$mdp,
 	));
 
     //passage à la page message
-    require('../vue/message.php')
+    require('../vue/message.php');
     ?> 
 
-    <!-- function valid_data($data) {
-        $data = trim($data); <!-- a revoir 
-        $data = stripslashes($data); <!-- enleve  les / si y en a 2 d\'affilé
-        $data = htmlentities($data);<!-- htmlspecialchars
-        return $data;
-    }-->
+    
 
 </body>
 </html>
