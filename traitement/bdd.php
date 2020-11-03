@@ -30,7 +30,7 @@
 	));
 
     //passage à la page message
-    require('message.php')
+    require('../vue/message.php')
     ?> 
 
     <!-- function valid_data($data) {

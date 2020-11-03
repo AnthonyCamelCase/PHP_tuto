@@ -10,11 +10,11 @@
  
     <!-- L'en-tête -->
     
-    <?php include("tete.php"); ?>
+    <?php include("../template/tete.php"); ?>
     
     <!-- Le menu -->
     
-    <?php include("menu.php"); ?>
+    <?php include("../template/menu.php"); ?>
     
     <!-- Le corps -->
 
@@ -28,7 +28,7 @@
         echo "<h2>",$_SESSION['erreur'],"</h2>";
     }
     ?>
-    <form action="traitement_form.php" method="post">
+    <form action="../traitement/formulaire.php" method="post">
     <label for="pren">Votre prénom : </label><input type="text" name="prenom" id="pren"><br><br>
     <label for="name">Votre nom : </label><input type="text" name="nom" id="name"><br><br>
     <label for="age">Votre age : </label><input type="number" name="age" id="age"><br><br>
@@ -38,6 +38,6 @@
     </div>
     <!-- Le pied de page -->
     
-    <?php include("pied.php"); ?>
+    <?php include("../template/pied.php"); ?>
 </body>
 </html>

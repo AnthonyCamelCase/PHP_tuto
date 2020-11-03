@@ -10,11 +10,11 @@
  
     <!-- L'en-tête -->
     
-    <?php include("tete.php"); ?>
+    <?php include("../template/tete.php"); ?>
     
     <!-- Le menu -->
     
-    <?php include("menu.php"); ?>
+    <?php include("../template/menu.php"); ?>
     
     <!-- Le corps -->
     
@@ -53,9 +53,7 @@
         
         $test = $donnees['id'];
 
-        echo "<a href='deleteInstance.php?id=.$test'>Delete</a><br><br>";
-        
-        
+        echo "<a href='../traitement/deleteInstance.php?id=$test'>Delete</a><br><br>";     
     }
     
     // on ferme le traitement de la requete
@@ -65,10 +63,8 @@
     
 <button>DELETE</button>
     <!-- Le pied de page -->
-<button> <a href="deleteInstance.php?id=$donnees['id']">Delete</a> </button>
-    <?php include("pied.php"); ?>
 
-
+    <?php include("../template/pied.php"); ?>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 <body>
     
     <?php
-   require('modele.php');
+   require('../classe/modele.php');
     
     //recupération des données formulaires :
     if ($_POST['prenom'] == NULL OR $_POST['nom'] == NULL OR $_POST['age']== NULL)
@@ -22,7 +22,7 @@
         $perso = new User($_POST['prenom'],$_POST['nom'],$_POST['age']);
     }
     
-    require('traitement.php');
+    require('bdd.php');
 
     ?>
     <!-- function valid_data($data) {
