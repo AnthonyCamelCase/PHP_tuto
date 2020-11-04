@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-     
-</head>
- 
-<body>
+<?php
+    $mdp = password_hash($mdp,PASSWORD_DEFAULT);
     
-    <?php
     //on récupère une BDD : avec test try catch
     $dsn = 'mysql:host=localhost;dbname=user;'; 
     $user = 'root'; 
@@ -19,21 +13,20 @@
     { 
      echo 'Connection failed: ' . $e->getMessage(); 
     }
-    $pseudo = htmlspecialchars($_POST['pseudo']);
-    $mdp = password_hash(htmlspecialchars($_POST["mdp"]));
+    
     //requete préparée :
     $req = $bdd->prepare('INSERT INTO utilisateur(pseudo, mdp) VALUES(:pseudo,:mdp)');
     
     $req->execute(array(
-	'pseudo' => $perso->$pseudo,
-	'mdp' => $perso->$mdp,
+	'pseudo' => $pseudo,
+	'mdp' => $mdp,
 	));
 
-    //passage à la page message
-    require('../vue/message.php');
-    ?> 
+    $req->closeCursor();
 
-    
+    //passage à la page index
+    require('../vue/index.php');
+    ?> 
 
 </body>
 </html>

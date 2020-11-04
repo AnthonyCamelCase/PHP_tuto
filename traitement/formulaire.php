@@ -1,17 +1,30 @@
 <?php session_start()?>
 
 <?php
-   require('../classe/modele.php');
+   
+    
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    
+    
+    $mdp = htmlspecialchars($_POST["mdp"]);
+    $mdp_verif = htmlspecialchars($_POST["mdp_verif"]);
+    
+    
+    
+    
+    
+    
+    
     
     //test si les champs sont vides :
-    if ($_POST['pseudo'] == NULL OR $_POST['mdp'] == NULL )
+    if ($pseudo == NULL OR $mdp == NULL )
     {
         $_SESSION["erreur"] = "rentrez bien toutes les case";
         header('Location: ../vue/inscription.php');
         exit();
     }
     //test si les 2 mdp correspondent
-    elseif ($_POST['mdp'] !== $_POST['mdp_verif'])
+    elseif ($mdp !== $mdp_verif)
     {
         $_SESSION["erreur"] = "les mots de passe ne correspondent pas";
         header('Location: ../vue/inscription.php');
@@ -34,11 +47,11 @@
 
         //on vérifie les doublons
         $reponse = $bdd->prepare('SELECT pseudo FROM utilisateur WHERE pseudo =?');
-        $reponse->execute([htmlspecialchars($_POST['pseudo'])]);
+        $reponse->execute([$pseudo]);
 
         //on récupère l'objet qui repond à la condition == $test
         $doublon = $reponse->fetch();     
-        
+        $reponse->closeCursor();
         // on test la condition
         if ($doublon) // il a bien trouvé une instance en double
             {

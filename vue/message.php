@@ -1,9 +1,21 @@
-
+<?php session_start()?>
+<?php
+        //vérification avant accès à la page
+        if ($_SESSION['perso'])
+        {  
+        }
+        else
+        {
+            header('Location: ../vue/connexion.php');
+            exit();
+        }
+    ?>
 <!DOCTYPE html>
 <html>
 <head>
         <meta charset="utf-8" />
         <title>Mon super site</title>
+        <link rel="stylesheet" href="../css/tableau.css">
 </head>
  
 <body>
@@ -19,15 +31,17 @@
     <!-- Le corps -->
     
     <div id="corps">
-        <h1>Mon super site</h1>
+        <h1>Espace membre</h1>
         
         <p>
-            Bienvenue sur mon super site !<br />
+            Bienvenue sur votre fiche !<br />
             Vous allez adorer ici, c'est un site génial qui va parler de... euh... Je cherche encore un peu le thème de mon site. :-D
         </p>
     </div>
 
     <div>
+    
+
     <?php
 
     //on récupère une BDD : avec test try catch
@@ -44,25 +58,55 @@
     }
 
     // on fait une requete sur cette BDD
-    $reponse = $bdd->query('SELECT * FROM utilisateur');
-
+    $reponse = $bdd->prepare('SELECT * FROM utilisateur WHERE pseudo=?');
+    $reponse->execute($perso->getPseudo);
+    $donnees = $reponse->fetchObject();
+    ?>
+    
+    <?php
     //afficher le résultat de la requete
-    while ($donnees= $reponse->fetch())
+    
     { ?>
         <!--on affiche les infos de chaque user -->
-        pseudo : <?php $donnees['pseudo']?>, prénom :<?php $donnees['prenom']?>, age :<?php $donnees['age']?>, mdp :<?php $donnees['mdp']?>;
-
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">Pseudo :<?= $perso->getPseudo()?></th>
+                </tr>
+            </thead> 
+            <tbody>
+                <tr>
+                    <td>Prénom</td>
+                    <td><?= $perso->getPrenom()?></td>
+                    <td><button>Modifier</button></td>
+                </tr>
+                <tr>
+                    <td>Nom</td>
+                    <td><?= $perso->getNom()?></td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><?= $perso->getAge()?></td>
+                </tr>
+                <tr>
+                    <td>Mot de passe hashé</td>
+                    <td><?= $perso->getMdp()?></td>
+                </tr>
+            </tbody>
+        </table>
+        <br> 
         <!--on ferme le traitement de la requete -->
-        <button><a href='../traitement/deleteInstance.php?id=<?php $donnees['id']?>'>Delete</a></button>
-        <br><br>   
+        <button><a href='../traitement/deleteInstance.php?id=<?= $donnees['id']?>'>Delete</a></button>
+        <br><br><br><br>
     <?php      
-    }
+    }?>
+        
+    <?php
     // on ferme le traitement de la requete
     $reponse->closeCursor();
     ?>
     </div>
-    
-<button>DELETE</button>
+
     <!-- Le pied de page -->
 
     <?php include("../template/pied.php"); ?>

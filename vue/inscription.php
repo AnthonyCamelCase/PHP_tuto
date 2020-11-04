@@ -23,8 +23,11 @@
     <div>
     <?php
     if (isset($_SESSION["erreur"]))
-    {
-        echo "<h2>",$_SESSION['erreur'],"</h2>";
+    {?>
+        <h2><?= $_SESSION['erreur'];?><br>
+            <?= $_SESSION['erreur2'];?></h2>
+    
+    <?php
     }
     ?>
     <form action="../traitement/formulaire.php" method="post">

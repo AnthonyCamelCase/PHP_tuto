@@ -37,10 +37,10 @@ class User
     }
 
     //setter
-    private function setPseudo($Pseudo)
+    private function setPseudo($pseudo)
     {
 
-        if (empty($Pseudo))
+        if (empty($pseudo))
         {
 
             header('Location: ../vue/inscription.php?erreurPseudo= True');
@@ -65,7 +65,7 @@ class User
 
     private function setNom($nom)
     {
-         if (empty($nom))
+        if (empty($nom))
         {    
         }
         else
@@ -77,13 +77,19 @@ class User
 
     private function setAge($age)
     {
+        if (empty($age))
+        {    
+        }
+        else
+        {
         $this->_age = htmlspecialchars($age);
+        }
+        
     }
 
     private function setMdp($mdp)
     {
-        
-        $this->_age = password_hash(htmlspecialchars($mdp)) ;
+        $this->_mdp = $mdp ;
     }
 
 };
