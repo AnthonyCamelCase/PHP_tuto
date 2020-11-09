@@ -22,10 +22,10 @@
     <h2>Formulaire user :</h2>
     <div>
     <?php
-    if (isset($_SESSION["erreur"]))
+    if (isset($erreur))
     {?>
-        <h2><?= $_SESSION['erreur'];?><br>
-            <?= $_SESSION['erreur2'];?></h2>
+        <h2><?= erreur;?><br>
+            <?= erreur2;?></h2>
     
     <?php
     }

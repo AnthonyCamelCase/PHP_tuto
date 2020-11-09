@@ -28,6 +28,3 @@ else
 {
     header('Location: ../vue/message.php');
 }
-
-
-    

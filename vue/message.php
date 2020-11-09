@@ -1,5 +1,5 @@
-<?php session_start()?>
-<?php
+<?php session_start();
+
         //vérification avant accès à la page
         if ($_SESSION['perso'])
         {  
@@ -17,7 +17,7 @@
         <title>Mon super site</title>
         <link rel="stylesheet" href="../css/tableau.css">
 </head>
- 
+
 <body>
  
     <!-- L'en-tête -->
@@ -40,29 +40,7 @@
     </div>
 
     <div>
-    
 
-    <?php
-
-    //on récupère une BDD : avec test try catch
-    $dsn = 'mysql:host=localhost;dbname=user;'; 
-    $user = 'root'; 
-    $password = ''; 
-    try 
-    { 
-    $bdd = new PDO($dsn, $user, $password); 
-    } 
-    catch (PDOException $e) 
-    { 
-     echo 'Connection failed: ' . $e->getMessage(); 
-    }
-
-    // on fait une requete sur cette BDD
-    $reponse = $bdd->prepare('SELECT * FROM utilisateur WHERE pseudo=?');
-    $reponse->execute($perso->getPseudo);
-    $donnees = $reponse->fetchObject();
-    ?>
-    
     <?php
     //afficher le résultat de la requete
     
@@ -71,26 +49,26 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="3">Pseudo :<?= $perso->getPseudo()?></th>
+                    <th colspan="3">Pseudo :<?= $_SESSION['perso']->getPseudo()?></th>
                 </tr>
             </thead> 
             <tbody>
                 <tr>
                     <td>Prénom</td>
-                    <td><?= $perso->getPrenom()?></td>
+                    <td><?= $_SESSION['perso']->getPrenom()?></td>
                     <td><button>Modifier</button></td>
                 </tr>
                 <tr>
                     <td>Nom</td>
-                    <td><?= $perso->getNom()?></td>
+                    <td><?= $_SESSION['perso']->getNom()?></td>
                 </tr>
                 <tr>
                     <td>Age</td>
-                    <td><?= $perso->getAge()?></td>
+                    <td><?= $_SESSION['perso']->getAge()?></td>
                 </tr>
                 <tr>
                     <td>Mot de passe hashé</td>
-                    <td><?= $perso->getMdp()?></td>
+                    <td><?= $_SESSION['perso']->getMdp()?></td>
                 </tr>
             </tbody>
         </table>
